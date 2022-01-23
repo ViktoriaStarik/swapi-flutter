@@ -1,0 +1,3 @@
+class ConfigProject {
+  static const String domain = 'https://swapi.dev/api';
+}
