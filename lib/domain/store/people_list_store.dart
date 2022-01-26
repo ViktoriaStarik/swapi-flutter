@@ -42,4 +42,7 @@ abstract class _PeopleListStore with Store {
 
   @computed
   String? get nextPageUrl => _nextPageUrl;
+
+  @computed
+  bool get hasMore => nextPageUrl != null;
 }

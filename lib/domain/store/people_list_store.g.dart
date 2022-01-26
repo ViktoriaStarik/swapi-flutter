@@ -36,6 +36,12 @@ mixin _$PeopleListStore on _PeopleListStore, Store {
       (_$nextPageUrlComputed ??= Computed<String?>(() => super.nextPageUrl,
               name: '_PeopleListStore.nextPageUrl'))
           .value;
+  Computed<bool>? _$hasMoreComputed;
+
+  @override
+  bool get hasMore => (_$hasMoreComputed ??=
+          Computed<bool>(() => super.hasMore, name: '_PeopleListStore.hasMore'))
+      .value;
 
   final _$_peopleListAtom = Atom(name: '_PeopleListStore._peopleList');
 
@@ -161,7 +167,8 @@ mixin _$PeopleListStore on _PeopleListStore, Store {
 peopleList: ${peopleList},
 count: ${count},
 prevPageUrl: ${prevPageUrl},
-nextPageUrl: ${nextPageUrl}
+nextPageUrl: ${nextPageUrl},
+hasMore: ${hasMore}
     ''';
   }
 }

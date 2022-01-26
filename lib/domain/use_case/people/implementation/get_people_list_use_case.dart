@@ -15,12 +15,13 @@ class GetPeopleListUseCase implements IGetPeopleListUseCase {
 
   @override
   Future invoke({bool after = false}) async {
-    if (after && _peopleListStore.nextPageUrl == null) return;
+    if (after && !_peopleListStore.hasMore) return;
+
     String? url = after ? _peopleListStore.nextPageUrl : null;
 
     PeopleListDTO people = await _repository.getList(url: url);
 
-    if (after) {
+    if (after && _peopleListStore.hasMore) {
       _peopleListStore.addPeoples(people.results);
     } else {
       _peopleListStore.setPeoples(people.results);
