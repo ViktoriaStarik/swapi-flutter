@@ -16,6 +16,13 @@ mixin _$PeopleListScreenStoreUI on _PeopleListScreenStoreUI, Store {
       (_$dataComputed ??= Computed<PeopleListViewModel>(() => super.data,
               name: '_PeopleListScreenStoreUI.data'))
           .value;
+  Computed<ListViewDataViewModel>? _$listViewDataComputed;
+
+  @override
+  ListViewDataViewModel get listViewData => (_$listViewDataComputed ??=
+          Computed<ListViewDataViewModel>(() => super.listViewData,
+              name: '_PeopleListScreenStoreUI.listViewData'))
+      .value;
 
   final _$loadingAtom = Atom(name: '_PeopleListScreenStoreUI.loading');
 
@@ -51,7 +58,8 @@ mixin _$PeopleListScreenStoreUI on _PeopleListScreenStoreUI, Store {
   String toString() {
     return '''
 loading: ${loading},
-data: ${data}
+data: ${data},
+listViewData: ${listViewData}
     ''';
   }
 }

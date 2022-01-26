@@ -42,23 +42,10 @@ class _PeopleListScreen extends State<PeopleListScreen> {
           ),
           const SizedBox(height: 8),
           Expanded(
-            child: NotificationListener<ScrollNotification>(
-              onNotification: _storeUI.onScroll,
-              child: ListView.builder(
-                  padding: EdgeInsets.zero,
-                  itemCount: _storeUI.data.items.length + 1,
-                  itemBuilder: (BuildContext context, int index) {
-                    /// TODO вынести логику в storeUI
-                    if (index == _storeUI.data.items.length - 1) {
-                      _storeUI.onMoreLoad();
-                    }
-                    if (index == _storeUI.data.items.length &&
-                        _storeUI.loading) {
-                      return const Loader();
-                    }
-                    return PeopleCard(people: _storeUI.data.items[index]);
-                  }),
-            ),
+            child: ListView.builder(
+                padding: EdgeInsets.zero,
+                itemCount: _storeUI.listViewData.itemCount,
+                itemBuilder: _storeUI.listViewData.itemBuilder),
           ),
         ],
       ),
